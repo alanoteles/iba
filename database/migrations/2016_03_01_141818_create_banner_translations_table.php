@@ -1,0 +1,41 @@
+<?php
+
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateBannerTranslationsTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('banner_translations', function (Blueprint $table) {
+            $table->increments('id');
+
+            $table->text('title');
+            $table->text('image_alt');
+            $table->text('image');
+            $table->text('url');
+
+            $table->text('locale');
+
+            $table->integer('banner_id')->unsigned();
+            $table->foreign('banner_id')->references('id')->on('banners')->onDelete('cascade');
+
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::drop('banner_translations');
+    }
+}

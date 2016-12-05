@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>IBA - Admin</title>
+
+    <meta name="description" content="overview &amp; stats" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- basic styles -->
+
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css" />
+
+    <!--[if IE 7]>
+      <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
+    <![endif]-->
+
+    <!-- page specific plugin styles -->
+    <link rel="stylesheet" href="assets/css/jquery-ui-1.10.3.full.min.css" />
+
+    <!-- fonts -->
+
+    <link rel="stylesheet" href="assets/css/ace-fonts.css" />
+
+    <!-- ace styles -->
+
+    <link rel="stylesheet" href="assets/css/ace.min.css" />
+    <link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
+    <link rel="stylesheet" href="assets/css/ace-skins.min.css" />
+
+    <link rel="stylesheet" href="assets/css/style-admin.css" />
+
+
+    <!--[if lte IE 8]>
+      <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
+    <![endif]-->
+
+    <!-- inline styles related to this page -->
+
+    <!-- ace settings handler -->
+
+    <script src="{{asset('admin/assets/js/ace-extra.min.js')}}"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+    <!--[if lt IE 9]>
+    <script src="{{asset('admin/assets/js/html5shiv.js')}}"></script>
+    <script src="{{asset('admin/assets/js/respond.min.js')}}"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+  
+    <!-- BARRA TOPO -->
+    <div class="navbar navbar-default" id="navbar">
+
+      <div class="navbar-container" id="navbar-container">
+        <div class="navbar-header pull-left">
+          <a href="index.html" class="navbar-brand"><small>Soluções Integradas - Portal</small></a>
+        </div>
+
+        <div class="navbar-header pull-right" role="navigation">
+          <ul class="nav ace-nav">
+            <li class="grey">
+              
+              <!-- NOTIFICAÇÕES -->
+              <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                <i class="icon-bell icon-animated-bell"></i>
+                <span class="badge badge-important">8</span>
+              </a>
+
+              
+              <ul class="pull-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
+                <li class="dropdown-header"><i class="icon-warning-sign"></i>8 Notifications</li>
+
+                <li>
+                  <a href="#">
+                    <div class="clearfix">
+                      <span class="pull-left"><i class="btn btn-xs no-hover btn-pink icon-comment"></i>New Comments</span>
+                      <span class="pull-right badge badge-info">+12</span>
+                    </div>
+                  </a>
+                </li>
+
+                <li>
+                  <a href="#"><i class="btn btn-xs btn-primary icon-user"></i>Bob just signed up as an editor ...</a>
+                </li>
+
+                <li>
+                  <a href="#">
+                    <div class="clearfix">
+                      <span class="pull-left"><i class="btn btn-xs no-hover btn-success icon-shopping-cart"></i>New Orders</span>
+                      <span class="pull-right badge badge-success">+8</span>
+                    </div>
+                  </a>
+                </li>
+
+                <li>
+                  <a href="#">
+                    <div class="clearfix">
+                      <span class="pull-left"><i class="btn btn-xs no-hover btn-info icon-twitter"></i>Followers</span>
+                      <span class="pull-right badge badge-info">+11</span>
+                    </div>
+                  </a>
+                </li>
+
+                <li><a href="#">See all notifications<i class="icon-arrow-right"></i></a></li>
+              </ul>
+            </li>
+
+            <li class="light-grey">
+              <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                <i class="icon-envelope icon-animated-vertical"></i>
+                <span class="badge badge-important">5</span>
+              </a>
+
+              <ul class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
+                  <li class="dropdown-header"><i class="icon-envelope-alt"></i>5 Messages</li>
+                  <li>
+                    <a href="#">
+                      <img src="{{asset('admin/assets/avatars/avatar.png')}}" class="msg-photo" alt="Alex's Avatar" />
+                      <span class="msg-body">
+                        <span class="msg-title"><span class="blue">Alex:</span>Ciao sociis natoque penatibus et auctor ...</span>
+                        <span class="msg-time"><i class="icon-time"></i><span>a moment ago</span></span>
+                      </span>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="#">
+                      <img src="{{asset('admin/assets/avatars/avatar3.png')}}" class="msg-photo" alt="Susan's Avatar" />
+                      <span class="msg-body">
+                        <span class="msg-title"><span class="blue">Susan:</span>Vestibulum id ligula porta felis euismod ...</span>
+                        <span class="msg-time"><i class="icon-time"></i><span>20 minutes ago</span></span>
+                      </span>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="#">
+                      <img src="{{asset('admin/assets/avatars/avatar4.png')}}" class="msg-photo" alt="Bob's Avatar" />
+                      <span class="msg-body">
+                        <span class="msg-title"><span class="blue">Bob:</span>Nullam quis risus eget urna mollis ornare ...</span>
+                        <span class="msg-time"><i class="icon-time"></i><span>3:15 pm</span></span>
+                      </span>
+                    </a>
+                  </li>
+                  <li><a href="inbox.html">See all messages<i class="icon-arrow-right"></i></a></li>
+              </ul>
+            </li>
+
+            <li class="light-blue">
+              <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+                <img class="nav-user-photo" src="{{asset('admin/assets/avatars/user.jpg" alt="Jason's Photo" />
+                <span class="user-info"><small>Bem vindo,</small>Fulano</span>
+                <i class="icon-caret-down"></i>
+              </a>
+
+              <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                <li><a href="#"><i class="icon-cog"></i>Settings</a></li>
+                <li><a href="#"><i class="icon-user"></i>Profile</a></li>
+                <li class="divider"></li>
+                <li><a href="#"><i class="icon-off"></i>Logout </a></li>
+              </ul>
+            </li>
+          </ul><!-- /.ace-nav -->
+        </div><!-- /.navbar-header -->
+      </div><!-- /.container -->
+    </div>
+    <!-- / BARRA TOPO -->
+
+
+
+
+
+
+
+
+
+    <div class="main-container" id="main-container">
+
+      <div class="main-container-inner">
+        
+        <!-- Ativa o menu mobile -->
+        <a class="menu-toggler" id="menu-toggler" href="#"><span class="menu-text"></span></a>
+
+
+        <!-- BARA DA LATERAL ESQUERDA -->
+        <div class="sidebar" id="sidebar">
+
+          <!-- Abas superiores -->
+          <div class="sidebar-shortcuts" id="sidebar-shortcuts">
+
+            <!-- Icones na aba-->
+            <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">  
+              <div class="abas abas-active"><i class="icon-site"></i></div>
+            </div>
+
+            <!-- Icones na aba em mobile-->
+            <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+              <span class="btn btn-success"></span>
+              <span class="btn btn-info"></span>
+              <span class="btn btn-warning"></span>
+              <span class="btn btn-danger"></span>
+            </div>
+          </div>
+          <!--/ Abas -->
+
+
+
+
+
+
+          <!-- ############### Menu  ############### -->
+          <ul class="nav nav-list menu-esquerdo">
+            <li class=""><a href="_projetos.html"><i class="icon-dashboard"></i><span class="menu-text">Projetos</span></a></li>
+            <li class=""><a href="_noticias.html"><i class="icon-dashboard"></i><span class="menu-text">Notícias</span></a></li>
+            <li class=""><a href="_objetos.html"><i class="icon-dashboard"></i><span class="menu-text">Objetos</span></a></li>
+            <li class=""><a href="_secoes.html"><i class="icon-dashboard"></i><span class="menu-text">Seções</span></a></li>
+            <li class=""><a href="_parceiros.html"><i class="icon-dashboard"></i><span class="menu-text">Parceiros</span></a></li>
+            <li class=""><a href="_banners.html"><i class="icon-dashboard"></i><span class="menu-text">Banners</span></a></li>
+            <li class=""><a href="_usuarios.html"><i class="icon-dashboard"></i><span class="menu-text">Usuários</span></a></li>
+            <li class="active"><a href="_tabelas-de-apoio.html"><i class="icon-dashboard"></i><span class="menu-text">Tabelas de apoio</span></a></li>
+            <li class="inactive"><a href=""><i class="icon-dashboard"></i><span class="menu-text">Ajuda e suporte</span></a></li>
+          </ul>
+          <!-- / ############### Menu  ############### -->
+
+
+          
+        </div>
+        <!-- / BARA DA LATERAL ESQUERDA -->
+  
+
+
+
+
+
+        <!-- LATERAL DIREITA -->
+        <div class="main-content">
+
+          <!-- breadcrumbs -->
+          <div class="breadcrumbs" id="breadcrumbs">
+            <ul class="breadcrumb">
+              <li><i class="icon-home home-icon"></i> <a href="index.html">Portal</a></li>
+              <li class="active">Tabelas de apoio</li>
+            </ul>
+          </div>
+          <!-- / breadcrumbs -->
+
+  
+
+
+  
+          <!-- WRAP DOS DADOS -->
+          <div class="wrap-content">     
+
+            <!-- =========== -->
+
+            <div id="area-dica">
+              <div class="font-size-16 orange title-apoio">
+                <div class="pull-left">O que são tabelas de apoio?</div>
+                <div class="pull-right"><a href="#" class="orange" id="closed-dica">x</a></div>
+              </div>
+
+              <p>Tabelas de apoio são funcionalidades do sistema que tem uma relevância menor do que as funcionalidades que são exibidas no menu. Essas funcionalidades são pouco utilizadas, mas de extrema importância para o sistema. Os registros inseridos em uma tabela de apoio são exibidos dentro de outros formulários do sistema .</p>
+                 
+              <p>Exemplo:  Ao cadastrar um novo Cliente é preciso informar, em um dos campos do formulário, a cidade na qual reside esse cliente. A tabela de apoio "Cidades" permite que você inclua, edite ou remova as cidades que são exibidas nesse campo do formulário.</p>
+              
+
+              <hr class="no-margin margin-top-5">
+
+              <div class="row-fluid">
+                <div class="checkbox text-checkbox no-padding">
+                  <label>
+                    <input name="form-field-checkbox" type="checkbox" class="ace">
+                    <span class="lbl"> &nbsp;&nbsp;<div class="font-open-light">Não exibir mais essa dica</div></span>
+                  </label>
+                </div>                        
+              </div>  
+            </div> 
+
+            <!-- =========== -->
+
+                      
+            <!-- Tabelas de apoio -->
+            <div class="col-sm-12 no-padding margin-top-10 lista-tabelas-apoio">
+              
+              <h3 class="header smaller lighter blue font-size-18 margin-top-25" style="font-weight: 400;">
+                Geral
+              </h3>
+
+
+              <div class="col-sm-6 no-padding">
+                <a href="grupo-de-usuarios.html">
+                  <div class="bloco-medio padding-10 margin-right-20 margin-bottom-20">
+                    <h4 class="text-primary no-margin-top margin-bottom-5">Grupo de usuários</h4>
+                    <p>Utilize essa tabela para incluir, editar ou excluir os grupos de usuários que são utilizados no cadastro de Usuários.</p>
+                  </div>  
+                </a>  
+              </div>
+
+              <div class="col-sm-6 no-padding">
+                <a href="idioma.html">
+                  <div class="bloco-medio padding-10 margin-right-20 margin-bottom-20">
+                    <h4 class="text-primary no-margin-top margin-bottom-5">Idioma</h4>
+                    <p>Utilize essa tabela para incluir, editar ou excluir os idiomas que são utilizados em todo o portal.</p>
+                  </div>  
+                </a>  
+              </div>                        
+
+              <div class="col-sm-6 no-padding">
+                <a href="perfil.html">
+                  <div class="bloco-medio padding-10 margin-right-20 margin-bottom-20">
+                    <h4 class="text-primary no-margin-top margin-bottom-5">Perfil</h4>
+                    <p>Utilize essa tabela para editar os perfis utilizados na criação de grupos de usuários.</p>
+                  </div>  
+                </a>  
+              </div>                
+
+              <div class="col-sm-6 no-padding">
+                <a href="nivel-escolaridade.html">
+                  <div class="bloco-medio padding-10 margin-right-20 margin-bottom-20">
+                    <h4 class="text-primary no-margin-top margin-bottom-5">Escolaridade</h4>
+                    <p>Utilize essa tabela para incluir, editar ou excluir os níveis de escolaridade que são utilizadas no cadastro de Clientes. </p>
+                  </div>  
+                </a>  
+              </div>  
+
+
+              <br clear="all">
+              <h3 class="header smaller lighter blue font-size-18 margin-top-35" style="font-weight: 400;">
+                Banco de conhecimento
+              </h3>
+
+
+              <div class="col-sm-6 no-padding">
+                <a href="tipo-de-midia.html">
+                  <div class="bloco-medio padding-10 margin-right-20 margin-bottom-20">
+                    <h4 class="text-primary no-margin-top margin-bottom-5">Tipo de mídia</h4>
+                    <p>Utilize essa tabela para incluir, editar ou excluir os tipos de mídia utilizados na criação de objetos.</p>
+                  </div>  
+                </a>  
+              </div>
+
+              <div class="col-sm-6 no-padding">
+                <a href="tipo-de-material.html">
+                  <div class="bloco-medio padding-10 margin-right-20 margin-bottom-20">
+                    <h4 class="text-primary no-margin-top margin-bottom-5">Tipo de material</h4>
+                    <p>Utilize essa tabela para incluir, editar ou excluir os tipos de materiais utilizados na criação de objetos.</p>
+                  </div>  
+                </a>  
+              </div>   
+
+              <div class="col-sm-6 no-padding">
+                <a href="area-de-interesse.html">
+                  <div class="bloco-medio padding-10 margin-right-20 margin-bottom-20">
+                    <h4 class="text-primary no-margin-top margin-bottom-5">Área de interesse</h4>
+                    <p>Utilize essa tabela para incluir, editar ou excluir os grupos de usuários que são utilizados no cadastro de Usuários. </p>
+                  </div>  
+                </a>  
+              </div>
+
+              <div class="col-sm-6 no-padding">
+                <a href="licenca.html">
+                  <div class="bloco-medio padding-10 margin-right-20 margin-bottom-20">
+                    <h4 class="text-primary no-margin-top margin-bottom-5">Licença</h4>
+                    <p>Utilize essa tabela para incluir, editar ou excluir os tipos de licenças utilizados na criação de objetos.</p>
+                  </div>  
+                </a>  
+              </div>  
+
+              <div class="col-sm-6 no-padding">
+                <a href="tag.html">
+                  <div class="bloco-medio padding-10 margin-right-20 margin-bottom-20">
+                    <h4 class="text-primary no-margin-top margin-bottom-5">TAG</h4>
+                    <p>Utilize essa tabela para incluir, editar ou excluir as TAGs  utilizadas na criação de objetos.</p>
+                  </div>  
+                </a>  
+              </div>  
+
+              <div class="col-sm-6 no-padding">
+                <a href="nivel.html">
+                  <div class="bloco-medio padding-10 margin-right-20 margin-bottom-20">
+                    <h4 class="text-primary no-margin-top margin-bottom-5">Nível</h4>
+                    <p>Utilize essa tabela para incluir, editar ou excluir os níveis de classificação dos objetos.</p>
+                  </div>  
+                </a>  
+              </div>  
+
+              <br clear="all">
+              <h3 class="header smaller lighter blue font-size-18 margin-top-35" style="font-weight: 400;">
+                Portal
+              </h3>
+
+
+
+
+
+
+
+
+              <div class="col-sm-6 no-padding">
+                <a href="redes-sociais.html">
+                  <div class="bloco-medio padding-10 margin-right-20 margin-bottom-20">
+                    <h4 class="text-primary no-margin-top margin-bottom-5">Redes social</h4>
+                    <p>Utilize essa tabela para incluir, editar ou excluir as redes sociais exibidas no rodapé.</p>
+                  </div>  
+                </a>  
+              </div>
+
+              <div class="col-sm-6 no-padding">
+                <a href="editoria_noticias.html">
+                  <div class="bloco-medio padding-10 margin-right-20 margin-bottom-20">
+                    <h4 class="text-primary no-margin-top margin-bottom-5">Editoria da notícia</h4>
+                    <p>Utilize essa tabela para incluir, editar ou excluir as redes sociais exibidas no rodapé.</p>
+                  </div>  
+                </a>  
+              </div>
+
+              <div class="col-sm-6 no-padding">
+                <a href="modalidade.html">
+                  <div class="bloco-medio padding-10 margin-right-20 margin-bottom-20">
+                    <h4 class="text-primary no-margin-top margin-bottom-5">Modalidade do projeto</h4>
+                    <p>Utilize essa tabela para incluir, editar ou excluir as modalidades utilizadas na criação de um Projetos.</p>
+                  </div>  
+                </a>  
+              </div>
+
+              <div class="col-sm-6 no-padding">
+                <a href="situacao.html">
+                  <div class="bloco-medio padding-10 margin-right-20 margin-bottom-20">
+                    <h4 class="text-primary no-margin-top margin-bottom-5">Situação do projeto</h4>
+                    <p>Utilize essa tabela para incluir, editar ou excluir as situações utilizadas na criação de um Projetos.</p>
+                  </div>  
+                </a>  
+              </div>
+
+              <div class="col-sm-6 no-padding">
+                <a href="atividade.html">
+                  <div class="bloco-medio padding-10 margin-right-20 margin-bottom-20">
+                    <h4 class="text-primary no-margin-top margin-bottom-5">Atividade de projeto</h4>
+                    <p>Utilize essa tabela para incluir, editar ou excluir as atividades utilizadas na criação de um Projetos.</p>
+                  </div>  
+                </a>  
+              </div>
+
+              <div class="col-sm-6 no-padding">
+                <a href="grupo_parceiro.html">
+                  <div class="bloco-medio padding-10 margin-right-20 margin-bottom-20">
+                    <h4 class="text-primary no-margin-top margin-bottom-5">Grupos de parceiros</h4>
+                    <p>Utilize essa tabela para incluir, editar ou excluir os grupos utilizados nno cadastro de Parceiros..</p>
+                  </div>  
+                </a>  
+              </div>
+
+
+            </div>            
+
+
+          </div>
+          <!-- / WRAP DOS DADOS -->
+            
+        </div>
+        <!-- / LATERAL DIREITA -->
+
+
+
+      </div><!-- /.main-container-inner -->
+    </div><!-- /.main-container -->
+
+
+
+
+
+
+
+
+
+
+
+    <!-- =============================== SCRIPTS =============================== -->
+
+
+    <!--[if !IE]> -->
+    <script type="text/javascript">
+        window.jQuery || document.write("<script src='assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+    </script>
+    <!-- <![endif]-->
+
+    <!--[if IE]>
+    <script type="text/javascript">
+     window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
+    </script>
+    <![endif]-->
+
+
+
+    <!-- basic scripts -->
+    <script type="text/javascript">
+        if("ontouchend" in document) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+    </script>
+    <script src="{{asset('admin/assets/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/typeahead-bs2.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/bootbox.min.js')}}"></script>
+
+    <!-- page specific plugin scripts -->
+
+    <!--[if lte IE 8]>
+      <script src="{{asset('admin/assets/js/excanvas.min.js')}}"></script>
+    <![endif]-->
+
+    <script src="{{asset('admin/assets/js/jquery-ui-1.10.3.custom.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/jquery.ui.touch-punch.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/jquery.slimscroll.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/jquery.easy-pie-chart.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/jquery.sparkline.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/flot/jquery.flot.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/flot/jquery.flot.pie.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/flot/jquery.flot.resize.min.js')}}"></script>
+
+    <!-- ace scripts -->
+
+    <script src="{{asset('admin/assets/js/ace-elements.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/ace.min.js')}}"></script>
+
+
+    <!-- Script exclusivo desta area -->
+    <script src="{{asset('admin/js/tabelas-de-apoio.js')}}"></script>
+ 
+  </body>
+</html>

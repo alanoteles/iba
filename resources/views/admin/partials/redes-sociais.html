@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>IBA - Admin</title>
+
+    <meta name="description" content="overview &amp; stats" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- basic styles -->
+
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css" />
+
+    <!--[if IE 7]>
+      <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
+    <![endif]-->
+
+    <!-- page specific plugin styles -->
+    <link rel="stylesheet" href="assets/css/jquery-ui-1.10.3.full.min.css" />
+
+    <!-- fonts -->
+
+    <link rel="stylesheet" href="assets/css/ace-fonts.css" />
+
+    <!-- ace styles -->
+
+    <link rel="stylesheet" href="assets/css/ace.min.css" />
+    <link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
+    <link rel="stylesheet" href="assets/css/ace-skins.min.css" />
+
+    <link rel="stylesheet" href="assets/css/style-admin.css" />
+
+
+    <!--[if lte IE 8]>
+      <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
+    <![endif]-->
+
+    <!-- inline styles related to this page -->
+
+    <!-- ace settings handler -->
+
+    <script src="{{asset('admin/assets/js/ace-extra.min.js')}}"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+    <!--[if lt IE 9]>
+    <script src="{{asset('admin/assets/js/html5shiv.js')}}"></script>
+    <script src="{{asset('admin/assets/js/respond.min.js')}}"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+  
+    <!-- BARRA TOPO -->
+    <div class="navbar navbar-default" id="navbar">
+
+      <div class="navbar-container" id="navbar-container">
+        <div class="navbar-header pull-left">
+          <a href="index.html" class="navbar-brand"><small>Soluções Integradas - Portal</small></a>
+        </div>
+
+        <div class="navbar-header pull-right" role="navigation">
+          <ul class="nav ace-nav">
+            <li class="grey">
+              
+              <!-- NOTIFICAÇÕES -->
+              <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                <i class="icon-bell icon-animated-bell"></i>
+                <span class="badge badge-important">8</span>
+              </a>
+
+              
+              <ul class="pull-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
+                <li class="dropdown-header"><i class="icon-warning-sign"></i>8 Notifications</li>
+
+                <li>
+                  <a href="#">
+                    <div class="clearfix">
+                      <span class="pull-left"><i class="btn btn-xs no-hover btn-pink icon-comment"></i>New Comments</span>
+                      <span class="pull-right badge badge-info">+12</span>
+                    </div>
+                  </a>
+                </li>
+
+                <li>
+                  <a href="#"><i class="btn btn-xs btn-primary icon-user"></i>Bob just signed up as an editor ...</a>
+                </li>
+
+                <li>
+                  <a href="#">
+                    <div class="clearfix">
+                      <span class="pull-left"><i class="btn btn-xs no-hover btn-success icon-shopping-cart"></i>New Orders</span>
+                      <span class="pull-right badge badge-success">+8</span>
+                    </div>
+                  </a>
+                </li>
+
+                <li>
+                  <a href="#">
+                    <div class="clearfix">
+                      <span class="pull-left"><i class="btn btn-xs no-hover btn-info icon-twitter"></i>Followers</span>
+                      <span class="pull-right badge badge-info">+11</span>
+                    </div>
+                  </a>
+                </li>
+
+                <li><a href="#">See all notifications<i class="icon-arrow-right"></i></a></li>
+              </ul>
+            </li>
+
+            <li class="light-grey">
+              <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                <i class="icon-envelope icon-animated-vertical"></i>
+                <span class="badge badge-important">5</span>
+              </a>
+
+              <ul class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
+                  <li class="dropdown-header"><i class="icon-envelope-alt"></i>5 Messages</li>
+                  <li>
+                    <a href="#">
+                      <img src="{{asset('admin/assets/avatars/avatar.png')}}" class="msg-photo" alt="Alex's Avatar" />
+                      <span class="msg-body">
+                        <span class="msg-title"><span class="blue">Alex:</span>Ciao sociis natoque penatibus et auctor ...</span>
+                        <span class="msg-time"><i class="icon-time"></i><span>a moment ago</span></span>
+                      </span>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="#">
+                      <img src="{{asset('admin/assets/avatars/avatar3.png')}}" class="msg-photo" alt="Susan's Avatar" />
+                      <span class="msg-body">
+                        <span class="msg-title"><span class="blue">Susan:</span>Vestibulum id ligula porta felis euismod ...</span>
+                        <span class="msg-time"><i class="icon-time"></i><span>20 minutes ago</span></span>
+                      </span>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="#">
+                      <img src="{{asset('admin/assets/avatars/avatar4.png')}}" class="msg-photo" alt="Bob's Avatar" />
+                      <span class="msg-body">
+                        <span class="msg-title"><span class="blue">Bob:</span>Nullam quis risus eget urna mollis ornare ...</span>
+                        <span class="msg-time"><i class="icon-time"></i><span>3:15 pm</span></span>
+                      </span>
+                    </a>
+                  </li>
+                  <li><a href="inbox.html">See all messages<i class="icon-arrow-right"></i></a></li>
+              </ul>
+            </li>
+
+            <li class="light-blue">
+              <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+                <img class="nav-user-photo" src="{{asset('admin/assets/avatars/user.jpg" alt="Jason's Photo" />
+                <span class="user-info"><small>Bem vindo,</small>Fulano</span>
+                <i class="icon-caret-down"></i>
+              </a>
+
+              <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                <li><a href="#"><i class="icon-cog"></i>Settings</a></li>
+                <li><a href="#"><i class="icon-user"></i>Profile</a></li>
+                <li class="divider"></li>
+                <li><a href="#"><i class="icon-off"></i>Logout </a></li>
+              </ul>
+            </li>
+          </ul><!-- /.ace-nav -->
+        </div><!-- /.navbar-header -->
+      </div><!-- /.container -->
+    </div>
+    <!-- / BARRA TOPO -->
+
+
+
+
+
+
+
+
+
+    <div class="main-container" id="main-container">
+
+      <div class="main-container-inner">
+        
+        <!-- Ativa o menu mobile -->
+        <a class="menu-toggler" id="menu-toggler" href="#"><span class="menu-text"></span></a>
+
+
+        <!-- BARA DA LATERAL ESQUERDA -->
+        <div class="sidebar" id="sidebar">
+
+          <!-- Abas superiores -->
+          <div class="sidebar-shortcuts" id="sidebar-shortcuts">
+
+            <!-- Icones na aba-->
+            <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">  
+              <div class="abas abas-active"><i class="icon-site"></i></div>
+            </div>
+
+            <!-- Icones na aba em mobile-->
+            <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+              <span class="btn btn-success"></span>
+              <span class="btn btn-info"></span>
+              <span class="btn btn-warning"></span>
+              <span class="btn btn-danger"></span>
+            </div>
+          </div>
+          <!--/ Abas -->
+
+
+
+
+
+
+          <!-- ############### Menu  ############### -->
+          <ul class="nav nav-list menu-esquerdo">
+            <li class=""><a href="_projetos.html"><i class="icon-dashboard"></i><span class="menu-text">Projetos</span></a></li>
+            <li class=""><a href="_noticias.html"><i class="icon-dashboard"></i><span class="menu-text">Notícias</span></a></li>
+            <li class=""><a href="_objetos.html"><i class="icon-dashboard"></i><span class="menu-text">Objetos</span></a></li>
+            <li class=""><a href="_secoes.html"><i class="icon-dashboard"></i><span class="menu-text">Seções</span></a></li>
+            <li class=""><a href="_parceiros.html"><i class="icon-dashboard"></i><span class="menu-text">Parceiros</span></a></li>
+            <li class=""><a href="_banners.html"><i class="icon-dashboard"></i><span class="menu-text">Banners</span></a></li>
+            <li class=""><a href="_usuarios.html"><i class="icon-dashboard"></i><span class="menu-text">Usuários</span></a></li>
+            <li class="active"><a href="_tabelas-de-apoio.html"><i class="icon-dashboard"></i><span class="menu-text">Tabelas de apoio</span></a></li>
+            <li class="inactive"><a href=""><i class="icon-dashboard"></i><span class="menu-text">Ajuda e suporte</span></a></li>
+          </ul>
+          <!-- / ############### Menu  ############### -->
+
+
+
+        </div>
+        <!-- / BARA DA LATERAL ESQUERDA -->
+  
+
+
+
+
+
+        <!-- LATERAL DIREITA -->
+        <div class="main-content">
+
+          <!-- breadcrumbs -->
+          <div class="breadcrumbs" id="breadcrumbs">
+            <ul class="breadcrumb">
+              <li><i class="icon-home home-icon"></i> <a href="index.html">Portal</a></li>
+              <li><a href="_tabelas-de-apoio.html">Tabelas de apoio</a></li>
+              <li class="active">Rede social</li>
+            </ul>
+          </div>
+          <!-- / breadcrumbs -->
+
+  
+
+
+  
+          <!-- WRAP DOS DADOS -->
+          <div class="wrap-content">     
+
+
+
+            <div class="row">
+              <div class="col-xs-12 align-right margin-top-10">
+                  <a href="redes-sociais-novo.html"><button class="btn btn-sm btn-success">Nova rede social</button></a>
+              </div>
+            </div>
+
+            
+            <div class="row margin-top-15 ">
+              <div class="col-xs-12">
+                Pesquisa
+                <hr class="margin-top-5 margin-bottom-5">
+              </div>
+            </div>
+
+            <!-- Fomulario de pesquisa -->
+            <div class="col-xs-12 no-padding margin-bottom-15 margin-top-10">
+              <form name="frm" method="post" action="">
+                <div class="col-xs-3 no-padding-left"><input type="text" id="palavra-chave" name="palavra-chave" placeholder="nome" class="col-xs-12"></div>
+                <div class="col-xs-3">
+                  <select class="form-control" id="form-field-select-1">
+                    <option value="">Exibir</option>
+                    <option value="">Exibir Todos</option>
+                    <option value="">Exibir Sim</option>
+                    <option value="">Exibir Não</option>
+                  </select>
+                </div>                
+                <div class="col-xs-4"><button type="submit" class="btn btn-info btn-sm bnt-input-height">Pesquisar</button></div>
+              </form>  
+            </div>
+            <!-- Fomulario de pesquisa -->
+            
+            
+            <div class="row-fluid">
+              <div class="table-responsive">
+                <table id="sample-table-1" class="table table-striped table-bordered table-hover no-margin">
+                  <thead>
+                    <tr>
+                      <th class="align-left acao-massa">
+                        <label>
+                          &nbsp; <input type="checkbox" class="ace">
+                          <span class="lbl"></span>
+                        </label>
+                        <div class="btn-group">
+                          <button data-toggle="dropdown" class="btn btn-xs dropdown-toggle">
+                            <span class="icon-caret-down icon-on-right"></span>
+                          </button>
+
+                          <ul class="dropdown-menu dropdown-inverse">
+                            <li><a href="#" class="ativar-all">Ativar</a></li>
+                            <li><a href="#">Desativar</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#" class="excluir_massa">Excluir</a></li>
+                          </ul>
+                        </div>                        
+                      </th>
+                      <th style="width: 70%;">Nome</th>
+                      <th class="hidden-480">Exibir</th>
+                      <th class="center">Ações</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <!-- line -->
+                    <tr>
+                      <td class="sel">
+                        <label>
+                          &nbsp; <input type="checkbox" class="ace">
+                          <span class="lbl"></span>
+                        </label>
+                      </td>
+                      <td class="nome-grupo" style="width: 70%;"><a href="redes-sociais-novo.html">Facebook</a></td>
+                      <td class="hidden-480 situacao situacao-clientes">
+                        <select class="form-control transparent" id="form-field-select-1">
+                          <option value="">Sim</option>
+                          <option value="">Não</option>
+                        </select>
+                      </td>                      
+                      <td class="acoes center">
+                        <div class="btn-group">
+                          <a href="#" class="btn btn-xs btn-grey remover-item-lista">
+                            <i class="icon-trash bigger-120"></i>
+                          </a>
+                        </div>                        
+                      </td>
+                    </tr>
+                    <!--/ line -->                      
+
+                    <!-- line -->
+                    <tr>
+                      <td class="sel">
+                        <label>
+                          &nbsp; <input type="checkbox" class="ace">
+                          <span class="lbl"></span>
+                        </label>
+                      </td>
+                      <td class="nome-grupo" style="width: 70%;"><a href="redes-sociais-novo.html">Youtube</a></td>
+                      <td class="hidden-480 situacao situacao-clientes">
+                        <select class="form-control transparent" id="form-field-select-1">
+                          <option value="">Ativa</option>
+                          <option value="">Inativa</option>
+                        </select>
+                      </td>                      
+                      <td class="acoes center">
+                        <div class="btn-group">
+                          <a href="#" class="btn btn-xs btn-grey remover-item-lista">
+                            <i class="icon-trash bigger-120"></i>
+                          </a>
+                        </div>                        
+                      </td>
+                    </tr>
+                    <!--/ line -->  
+                  </tbody>
+                </table>
+              </div><!-- /.table-responsive -->
+              <!--/ ######### tabela responsiva ######### -->
+            </div>
+            
+            <!-- PAGINAÇÃO -->
+            <div class="row">
+              <div class="col-xs-12 container-pag no-margin padding-15" >
+                <div class="col-xs-6 no-padding-left padding-top-10">
+                  1 a 20 registros de 128
+                </div>
+                <div class="col-xs-6 align-right no-padding-right padding-top-5">
+                  <ul class="pagination no-margin">
+                    <li class="disabled">
+                      <a href="#">
+                        <i class="icon-double-angle-left"></i>
+                      </a>
+                    </li>
+
+                    <li class="active">
+                      <a href="#">1</a>
+                    </li>
+
+                    <li>
+                      <a href="#">2</a>
+                    </li>
+
+                    <li>
+                      <a href="#">3</a>
+                    </li>
+
+                    <li>
+                      <a href="#">4</a>
+                    </li>
+
+                    <li>
+                      <a href="#">5</a>
+                    </li>
+
+                    <li>
+                      <a href="#">
+                        <i class="icon-double-angle-right"></i>
+                      </a>
+                    </li>
+                  </ul>            
+                </div>
+
+              </div>  
+            </div>       
+            <!--/ PAGINAÇÃO -->
+
+
+          </div>
+          <!-- / WRAP DOS DADOS -->
+            
+        </div>
+        <!-- / LATERAL DIREITA -->
+
+
+
+      </div><!-- /.main-container-inner -->
+    </div><!-- /.main-container -->
+
+
+
+
+
+
+
+
+
+
+
+    <!-- =============================== SCRIPTS =============================== -->
+
+    <!--[if !IE]> -->
+    <script type="text/javascript">
+      window.jQuery || document.write("<script src='assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+    </script>
+    <!-- <![endif]-->
+
+    <!--[if IE]>
+    <script type="text/javascript">
+      window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
+    </script>
+    <![endif]-->
+
+    <!--[if lte IE 8]>
+      <script src="{{asset('admin/assets/js/excanvas.min.js')}}"></script>
+    <![endif]-->
+
+    <!-- scripts gerais -->
+    <script type="text/javascript">
+      if("ontouchend" in document) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+    </script>
+    <script src="{{asset('admin/assets/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/typeahead-bs2.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/bootbox.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/jquery-ui-1.10.3.custom.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/jquery.ui.touch-punch.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/jquery.slimscroll.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/jquery.easy-pie-chart.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/jquery.sparkline.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/flot/jquery.flot.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/flot/jquery.flot.pie.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/flot/jquery.flot.resize.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/ace-elements.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/ace.min.js')}}"></script>
+
+
+
+    <!-- scripts exclusivos desta area -->
+    <script src="{{asset('admin/js/redes-sociais.js')}}"></script>
+ 
+  </body>
+</html>

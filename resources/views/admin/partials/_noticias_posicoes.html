@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>IBA - Admin</title>
+
+    <meta name="description" content="overview &amp; stats" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css" />
+
+    <!--[if IE 7]>
+      <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
+    <![endif]-->
+
+    <!-- page specific plugin styles -->
+
+    <link rel="stylesheet" href="assets/css/jquery-ui-1.10.3.custom.min.css" />
+    <link rel="stylesheet" href="assets/css/chosen.css" />
+    <link rel="stylesheet" href="assets/css/datepicker.css" />
+    <link rel="stylesheet" href="assets/css/bootstrap-timepicker.css" />
+    <link rel="stylesheet" href="assets/css/daterangepicker.css" />
+    <link rel="stylesheet" href="assets/css/colorpicker.css" />
+
+    <!-- fonts -->
+
+    <link rel="stylesheet" href="assets/css/ace-fonts.css" />
+
+    <!-- ace styles -->
+
+    <link rel="stylesheet" href="assets/css/ace.min.css" />
+    <link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
+    <link rel="stylesheet" href="assets/css/ace-skins.min.css" />
+
+    <!-- Crop -->
+    <link rel="stylesheet" href="assets/css/style-crop.css" type="text/css" />
+
+  
+    <link rel="stylesheet" href="assets/css/style-admin.css" />
+
+
+    <!--[if lte IE 8]>
+      <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
+    <![endif]-->
+
+    <!-- inline styles related to this page -->
+
+    <!-- ace settings handler -->
+
+    <script src="{{asset('admin/assets/js/ace-extra.min.js')}}"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+    <!--[if lt IE 9]>
+    <script src="{{asset('admin/assets/js/html5shiv.js')}}"></script>
+    <script src="{{asset('admin/assets/js/respond.min.js')}}"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+  
+    <!-- BARRA TOPO -->
+    <div class="navbar navbar-default" id="navbar">
+
+      <div class="navbar-container" id="navbar-container">
+        <div class="navbar-header pull-left">
+          <a href="index.html" class="navbar-brand"><small>Soluções Integradas - Portal</small></a>
+        </div>
+
+        <div class="navbar-header pull-right" role="navigation">
+          <ul class="nav ace-nav">
+            <li class="grey">
+              
+              <!-- NOTIFICAÇÕES -->
+              <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                <i class="icon-bell icon-animated-bell"></i>
+                <span class="badge badge-important">8</span>
+              </a>
+
+              
+              <ul class="pull-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
+                <li class="dropdown-header"><i class="icon-warning-sign"></i>8 Notifications</li>
+
+                <li>
+                  <a href="#">
+                    <div class="clearfix">
+                      <span class="pull-left"><i class="btn btn-xs no-hover btn-pink icon-comment"></i>New Comments</span>
+                      <span class="pull-right badge badge-info">+12</span>
+                    </div>
+                  </a>
+                </li>
+
+                <li>
+                  <a href="#"><i class="btn btn-xs btn-primary icon-user"></i>Bob just signed up as an editor ...</a>
+                </li>
+
+                <li>
+                  <a href="#">
+                    <div class="clearfix">
+                      <span class="pull-left"><i class="btn btn-xs no-hover btn-success icon-shopping-cart"></i>New Orders</span>
+                      <span class="pull-right badge badge-success">+8</span>
+                    </div>
+                  </a>
+                </li>
+
+                <li>
+                  <a href="#">
+                    <div class="clearfix">
+                      <span class="pull-left"><i class="btn btn-xs no-hover btn-info icon-twitter"></i>Followers</span>
+                      <span class="pull-right badge badge-info">+11</span>
+                    </div>
+                  </a>
+                </li>
+
+                <li><a href="#">See all notifications<i class="icon-arrow-right"></i></a></li>
+              </ul>
+            </li>
+
+            <li class="light-grey">
+              <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                <i class="icon-envelope icon-animated-vertical"></i>
+                <span class="badge badge-important">5</span>
+              </a>
+
+              <ul class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
+                  <li class="dropdown-header"><i class="icon-envelope-alt"></i>5 Messages</li>
+                  <li>
+                    <a href="#">
+                      <img src="{{asset('admin/assets/avatars/avatar.png')}}" class="msg-photo" alt="Alex's Avatar" />
+                      <span class="msg-body">
+                        <span class="msg-title"><span class="blue">Alex:</span>Ciao sociis natoque penatibus et auctor ...</span>
+                        <span class="msg-time"><i class="icon-time"></i><span>a moment ago</span></span>
+                      </span>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="#">
+                      <img src="{{asset('admin/assets/avatars/avatar3.png')}}" class="msg-photo" alt="Susan's Avatar" />
+                      <span class="msg-body">
+                        <span class="msg-title"><span class="blue">Susan:</span>Vestibulum id ligula porta felis euismod ...</span>
+                        <span class="msg-time"><i class="icon-time"></i><span>20 minutes ago</span></span>
+                      </span>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="#">
+                      <img src="{{asset('admin/assets/avatars/avatar4.png')}}" class="msg-photo" alt="Bob's Avatar" />
+                      <span class="msg-body">
+                        <span class="msg-title"><span class="blue">Bob:</span>Nullam quis risus eget urna mollis ornare ...</span>
+                        <span class="msg-time"><i class="icon-time"></i><span>3:15 pm</span></span>
+                      </span>
+                    </a>
+                  </li>
+                  <li><a href="inbox.html">See all messages<i class="icon-arrow-right"></i></a></li>
+              </ul>
+            </li>
+
+            <li class="light-blue">
+              <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+                <img class="nav-user-photo" src="{{asset('admin/assets/avatars/user.jpg" alt="Jason's Photo" />
+                <span class="user-info"><small>Bem vindo,</small>Fulano</span>
+                <i class="icon-caret-down"></i>
+              </a>
+
+              <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                <li><a href="#"><i class="icon-cog"></i>Settings</a></li>
+                <li><a href="#"><i class="icon-user"></i>Profile</a></li>
+                <li class="divider"></li>
+                <li><a href="#"><i class="icon-off"></i>Logout </a></li>
+              </ul>
+            </li>
+          </ul><!-- /.ace-nav -->
+        </div><!-- /.navbar-header -->
+      </div><!-- /.container -->
+    </div>
+    <!-- / BARRA TOPO -->
+
+
+
+
+
+
+
+
+
+    <div class="main-container" id="main-container">
+
+      <div class="main-container-inner">
+        
+        <!-- Ativa o menu mobile -->
+        <a class="menu-toggler" id="menu-toggler" href="#"><span class="menu-text"></span></a>
+
+
+        <!-- BARA DA LATERAL ESQUERDA -->
+        <div class="sidebar" id="sidebar">
+
+          <!-- Abas superiores -->
+          <div class="sidebar-shortcuts" id="sidebar-shortcuts">
+
+            <!-- Icones na aba-->
+            <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">  
+              <div class="abas abas-active"><i class="icon-globe"></i></div>
+            </div>
+
+            <!-- Icones na aba em mobile-->
+            <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+              <span class="btn btn-success"></span>
+              <span class="btn btn-info"></span>
+              <span class="btn btn-warning"></span>
+              <span class="btn btn-danger"></span>
+            </div>
+          </div>
+          <!--/ Abas -->
+
+
+
+
+          <!-- ############### Menu  ############### -->
+          <ul class="nav nav-list menu-esquerdo">
+            <li class=""><a href="_projetos.html"><i class="icon-dashboard"></i><span class="menu-text">Projetos</span></a></li>
+            <li class="active"><a href="_noticias.html"><i class="icon-dashboard"></i><span class="menu-text">Notícias</span></a></li>
+            <li class=""><a href="_objetos.html"><i class="icon-dashboard"></i><span class="menu-text">Objetos</span></a></li>
+            <li class=""><a href="_secoes.html"><i class="icon-dashboard"></i><span class="menu-text">Seções</span></a></li>
+            <li class=""><a href="_parceiros.html"><i class="icon-dashboard"></i><span class="menu-text">Parceiros</span></a></li>
+            <li class=""><a href="_banners.html"><i class="icon-dashboard"></i><span class="menu-text">Banners</span></a></li>
+            <li class=""><a href="_usuarios.html"><i class="icon-dashboard"></i><span class="menu-text">Usuários</span></a></li>
+            <li class=""><a href="_tabelas-de-apoio.html"><i class="icon-dashboard"></i><span class="menu-text">Tabelas de apoio</span></a></li>
+            <li class="inactive"><a href=""><i class="icon-dashboard"></i><span class="menu-text">Ajuda e suporte</span></a></li>
+          </ul>
+          <!-- / ############### Menu  ############### -->
+
+
+        </div>
+        <!-- / BARA DA LATERAL ESQUERDA -->
+  
+
+
+
+
+
+        <!-- LATERAL DIREITA -->
+        <div class="main-content">
+
+          <!-- breadcrumbs -->
+          <div class="breadcrumbs" id="breadcrumbs">
+            <ul class="breadcrumb">
+              <li><i class="icon-home home-icon"></i> <a href="index.html">Portal</a></li>
+              <li><a href="_noticias.html">Notícias</a></li>
+              <li class="active">Definir posições</li>
+            </ul>
+          </div>
+          <!-- / breadcrumbs -->
+
+  
+ 
+          <!-- WRAP DOS DADOS -->
+          <div class="wrap-content">     
+
+            <form name="frm" id="frm" class="form-horizontal" role="form" method="post">
+
+              <div class="col-xs-12 botoes-pj-pf">
+
+                <a href="_noticias.html"  class="btn cancelar btn-sm font-size-14 margin-right-2" style="padding: 3px 10px 4px 10px;">Cancelar</a>
+                <button type="button" class="btn btn-success salvar no-margin">Salvar</button>                  
+              </div>
+              <br clear="all"/>
+              <div class="tabbable">
+                <ul class="nav nav-tabs" id="myTab">
+                  <li class="active"><a data-toggle="tab" href="#aba-home">Home</a></li>
+                  <li class=""><a data-toggle="tab" href="#aba-projetos">Página notícias</a></li>
+                </ul>
+
+                <div class="tab-content">
+                 
+
+                  <!-- dados gerais -->
+                  <div id="aba-home" class="tab-pane margin-bottom-45 margin-top-35 active">
+
+                    <div class="form-group fotm-tab">
+                      <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Áreas de destaque </label>
+                      <div class="col-sm-9 posicoes">
+                        <div rel="1" class="col-sm-4 posicao1 item">
+                          <img src="{{asset('admin/assets/images/posicao1.png')}}" alt="">
+                          <div class="status margin-top-20">&nbsp;Página inicial - Posição H1</div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div rel="2" class="posicao2 item">
+                            <img src="{{asset('admin/assets/images/posicao4.png')}}" alt="">
+                            <div class="status margin-top-5">&nbsp;Página inicial - Posição H2</div>
+                          </div>
+                          <div rel="3" class="posicao3 item margin-top-15">
+                            <img src="{{asset('admin/assets/images/posicao5.png')}}" alt="">
+                            <div class="status margin-top-5">&nbsp;Página inicial - Posição H2</div>
+                          </div>
+                          <div rel="4" class="posicao4 item margin-top-15">
+                            <img src="{{asset('admin/assets/images/posicao6.png')}}" alt="">
+                            <div class="status margin-top-5">&nbsp;Página inicial - Posição H2</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>  
+
+                    <div class="form-group fotm-tab margin-top-30 height-30">
+                      <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Área selecionada</label>
+                      <div class="col-sm-9 posicao-sel">
+                        <input type="hidden" name="posicao" value="" />
+                        <p class="lead padding-left-15 font-size-18"></p>
+                      </div>
+                    </div>   
+
+
+                    <div class="form-group fotm-tab margin-top-30">
+                      <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Selecionar projeto *</label>
+                      <div class="col-sm-8 padding-left-25">
+                        <select class="chosen-select" id="projeto" required="true" name="projeto" data-placeholder="Choose a Country..." style="width: 100%;">
+                          <option value="">Localizar notícia</option>
+                          <option value="Notícia 01">Notícia 01</option>
+                        </select>
+                      </div>
+                    </div>   
+
+                  </div>
+                  <!-- / dados gerais -->
+
+                  <!--  -->
+                  <div id="aba-projetos" class="tab-pane margin-bottom-45">
+                    <div class="form-group fotm-tab">
+                      <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Áreas de destaque </label>
+                      <div class="col-sm-9 posicoes_2">
+                        <div rel="1" class="col-sm-5 posicao_1 item">
+                          <img src="{{asset('admin/assets/images/posicao8.png')}}" alt="">
+                          <div class="status margin-top-15">&nbsp;Página inicial - Posição H1</div>
+                        </div>
+                        <div rel="2" class="col-sm-5 posicao_2 item">
+                          <img src="{{asset('admin/assets/images/posicao9.png')}}" alt="">
+                          <div class="status margin-top-15">&nbsp;Página inicial - Posição H2</div>
+                        </div>
+
+                        <div rel="3" class="col-sm-5 posicao_3 item margin-top-25">
+                          <img src="{{asset('admin/assets/images/posicao11.png')}}" alt="" class="pull-left">
+                          <div class="status margin-top-50" class="pull-left">&nbsp;Página inicial - Posição H3</div>
+                        </div>
+                        <div rel="4" class="col-sm-5 posicao_4 item margin-top-25">
+                          <img src="{{asset('admin/assets/images/posicao12.png')}}" alt="" class="pull-left">
+                          <div class="status margin-top-50" class="pull-left">&nbsp;Página inicial - Posição H4</div>
+                        </div>                        
+                        <div rel="3" class="col-sm-5 posicao_3 item margin-top-25">
+                          <img src="{{asset('admin/assets/images/posicao13.png')}}" alt="" class="pull-left">
+                          <div class="status margin-top-50" class="pull-left">&nbsp;Página inicial - Posição H5</div>
+                        </div>
+                        <div rel="4" class="col-sm-5 posicao_4 item margin-top-25">
+                          <img src="{{asset('admin/assets/images/posicao14.png')}}" alt="" class="pull-left">
+                          <div class="status margin-top-50" class="pull-left">&nbsp;Página inicial - Posição H6</div>
+                        </div>                          
+                      </div>
+                    </div>  
+
+                    <div class="form-group fotm-tab margin-top-30 height-30">
+                      <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Área selecionada</label>
+                      <div class="col-sm-9 posicao-sel2">
+                        <input type="hidden" name="posicoes_2" value="" />
+                        <p class="lead padding-left-15 font-size-18"></p>
+                      </div>
+                    </div>   
+
+
+                    <div class="form-group fotm-tab margin-top-30">
+                      <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Selecionar projeto *</label>
+                      <div class="col-sm-8 padding-left-25">
+                        <select class="chosen-select2" id="projeto_2" required="true" name="projeto_2" data-placeholder="Choose a Country..." style="width: 100%;">
+                          <option value="">Localizar notícia</option>
+                          <option value="Notícia 01">Notícia 01</option>
+                        </select>
+                      </div>
+                    </div>  
+                  </div>
+                  <!-- /  -->
+
+
+                </div>
+                
+                <br clear="all"><br clear="all">
+              </div>
+
+            </form>
+          </div>
+          <!-- / WRAP DOS DADOS -->
+            
+        </div>
+        <!-- / LATERAL DIREITA -->
+
+
+
+      </div><!-- /.main-container-inner -->
+    </div><!-- /.main-container -->
+
+
+
+    <!-- #dialog-message -->
+    <div id="dialog-message" class="hide"></div>
+    <!-- / #dialog-message -->
+
+
+    <!-- =============================== SCRIPTS =============================== -->
+
+
+    <!--[if !IE]> -->
+    <script type="text/javascript">
+        window.jQuery || document.write("<script src='assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+    </script>
+    <!-- <![endif]-->
+
+    <!--[if IE]>
+    <script type="text/javascript">
+     window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
+    </script>
+    <![endif]-->
+
+
+
+    <!-- basic scripts -->
+    <script type="text/javascript">
+        if("ontouchend" in document) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+    </script>
+    <script src="{{asset('admin/assets/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/typeahead-bs2.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/bootbox.min.js')}}"></script>
+
+    <!-- page specific plugin scripts -->
+
+    <!--[if lte IE 8]>
+      <script src="{{asset('admin/assets/js/excanvas.min.js')}}"></script>
+    <![endif]-->
+
+    <script src="{{asset('admin/assets/js/jquery-ui-1.10.3.custom.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/jquery.ui.touch-punch.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/jquery.slimscroll.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/jquery.easy-pie-chart.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/jquery.sparkline.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/flot/jquery.flot.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/flot/jquery.flot.pie.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/flot/jquery.flot.resize.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/jquery-ui-1.10.3.full.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/jquery.ui.touch-punch.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/chosen.jquery.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/fuelux/fuelux.spinner.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/date-time/bootstrap-datepicker.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/date-time/bootstrap-timepicker.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/date-time/moment.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/date-time/daterangepicker.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/bootstrap-colorpicker.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/jquery.knob.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/jquery.autosize.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/jquery.inputlimiter.1.3.1.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/jquery.maskedinput.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/bootstrap-tag.min.js')}}"></script>
+
+
+    <!-- ace scripts -->
+
+    <script src="{{asset('admin/assets/js/ace-elements.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/ace.min.js')}}"></script>
+
+
+    <!-- Script exclusivo desta area -->
+    <!-- <script src="{{asset('admin/js/cropbox.js')}}"></script> -->
+    <script src="{{asset('admin/js/_noticias_posicoes.js')}}"></script>
+    <!--<script src="{{asset('admin/js/projeto1-crop.js')}}"></script>-->
+    <!--<script src="{{asset('admin/js/ckeditor/ckeditor.js?v=2"></script> -->
+ 
+  </body>
+</html>

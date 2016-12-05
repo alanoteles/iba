@@ -1,0 +1,663 @@
+<section class="beh-graficodefault">
+	<div id="menu" class="menuchoice hidden-md hidden-lg">Select series:
+		<select>
+			<option value="val1">Value 1</option>
+			<option value="val2">Value 2</option>
+			<option value="val3">Value 3</option>
+			<option value="val4">Value 4</option>
+		</select>
+	</div>
+	<div id="graphic"></div>
+<script>
+$( document ).ready(function() {
+    function number_in_pt_BR(value,decimal_digits)
+    {
+        return value.toLocaleString('pt-BR',{ maximumFractionDigits: decimal_digits });
+    }
+
+
+    var pt_BR = d3.locale({
+            "decimal": ",",
+            "thousands": ".",
+            "grouping": [3],
+            "currency": ["R$", "reais"],
+            "dateTime": "%a %b %e %X %Y",
+            "date": "%d/%m/%Y",
+            "time": "%H:%M:%S",
+            "periods": ["AM", "PM"],
+            "days": ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"],
+            "shortDays": ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"],
+            "months": ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
+            "shortMonths": ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
+        });
+    function grafico(){
+        var widthTem = $("#graphic").width();
+        var heightTem = $("#graphic").height();
+        //set the margins
+        var margin = {top: 0, right: 30, bottom: 0, left: 20},
+            width = widthTem,
+            height = heightTem;
+
+
+        //set dek and head to be as wide as SVG
+        d3.select('#dek')
+            .style('width', width +'px');
+        d3.select('#headline')
+            .style('width',width+'px');
+
+        //write out your source text here
+        var sourcetext= "Source: XXXXX";
+
+        // set the type of number here, n is a number with a comma, .2% will get you a percent, .2f will get you 2 decimal points
+        var NumbType = d3.format(".2f");
+
+        // color array
+        var bluescale4 = ["#fff", "#ff0000", "#066CA9", "#004B8C"];
+
+        //color function pulls from array of colors stored in color.js
+        var color = d3.scale.ordinal().range(bluescale4);
+
+        //define the approx. number of x scale ticks
+        var xscaleticks = 5;
+
+        //defines a function to be used to append the title to the tooltip.  you can set how you want it to display here.
+        var maketip = function (d) {
+                       var tip = '<p class="tip1">' + NumbType(d.value) + '</p><p></p>';
+                       return tip;}
+
+        //define your year format here, first for the x scale, then if the date is displayed in tooltips
+        var parseDate = d3.time.format("%m/%d/%y").parse;
+        var formatDate = pt_BR.timeFormat("%b %d, '%y");
+
+        //create an SVG
+        var svg = d3.select("#graphic").append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + (margin.top+4) + ")");
+
+        //make a rectangle so there is something to click on
+        svg.append("svg:rect")
+            .attr("width", width)
+            .attr("height", height)
+            .attr("class", "plot")
+            .attr('fill', 'transparent');
+
+         //make a clip path for the graph
+         var clip = svg.append("svg:clipPath")
+            .attr("id", "clip")
+            .append("svg:rect")
+            .attr("x", 0)
+            .attr("y", 0)
+            .attr("width", width)
+            .attr("height", height);
+
+        // force data to update when menu is changed
+        var menu = d3.select("#menu select")
+            .on("change", change);
+
+        var first_data = {};
+        var last_data = {};
+
+        //suck in the data, store it in a value called formatted, run the redraw function
+        d3.csv('data.csv', function(data) {
+            formatted = data;
+            redraw();
+        });
+
+        d3.select(window)
+            .on("keydown", function() { altKey = d3.event.altKey; })
+            .on("keyup", function() { altKey = false; });
+        var altKey;
+
+        // set terms of transition that will take place
+        // when a new economic indicator is chosen
+        function change() {
+          d3.transition()
+              .duration(altKey ? 7500 : 1500)
+              .each(redraw);
+        }
+
+        // all the meat goes in the redraw function
+        function redraw() {
+            widthTem = $("#graphic").width() - 30;
+            heightTem = $("#graphic").height() - 40;
+            //set the margins
+            margin = {top: 0, right: 30, bottom: 0, left: 20},
+                width = widthTem,
+                height = heightTem;
+
+            svg.select("rect")
+            .attr("width", width)
+            .attr("height", height)
+            .attr("class", "plot")
+            .attr("fill", "transparent");
+
+            var clip = svg.append("svg:clipPath")
+                        .attr("id", "clip")
+                        .append("svg:rect")
+                        .attr("x", 0)
+                        .attr("y", 0)
+                        .attr("width", width)
+                        .attr("height", height);
+
+            //$("#graphic svg")
+              //  .attr("width", width)
+                //.attr("height", height)
+
+            //$("#graphic svg g:first")
+              //  .attr("width", width)
+                //.attr("height", height);
+
+            //svg
+              //  .attr("width", width)
+                //.attr("height", height)
+
+
+
+            // create data nests based on economic indicator (series)
+            var nested = d3.nest()
+                .key(function(d) { return d.type; })
+                .map(formatted)
+
+            // get value from menu selection
+            // the option values are set in HTML and correspond
+            //to the [type] value we used to nest the data
+            var series = menu.property("value");
+
+            // only retrieve data from the selected series, using the nest we just created
+            var data = nested[series];
+
+            // for object constancy we will need to set "keys", one for each type of data (column name) exclude all others.
+            color.domain(d3.keys(data[0]).filter(function(key) { return (key !== "date" && key !== "type"); }));
+
+            var linedata = color.domain().map(function(name) {
+                            return {name: name,
+                                    values: data.map(function(d) {
+                                    return {name:name, date: parseDate(d.date), value: parseFloat(d[name],10)};
+                                    })
+                            };
+            });
+
+            //make an empty variable to stash the last values into so i can sort the legend
+            var lastvalues=[];
+
+            //setup the x and y scales
+            var x = d3.time.scale()
+                .domain([
+                d3.min(linedata, function(c) { return d3.time.month.offset(d3.min(c.values, function(v) { return v.date; }),-3); }),
+                d3.max(linedata, function(c) { return d3.time.month.offset(d3.max(c.values, function(v) { return v.date; }), 8); })
+                ])
+                .range([0, width]);
+
+            var y = d3.scale.linear()
+                .domain([
+                d3.min(linedata, function(c) { return d3.min(c.values, function(v) { return v.value; }) - ((d3.max(c.values, function(v) { return v.value; }) - (d3.min(c.values, function(v) { return v.value; })) )/9.0); }),
+                d3.max(linedata, function(c) { return d3.max(c.values, function(v) { return v.value; }) + ((d3.max(c.values, function(v) { return v.value; }) - (d3.min(c.values, function(v) { return v.value; })) )/9.0); })
+                ])
+                .range([height, 0]);
+
+            var nome_limites = [ color.domain()[1], color.domain()[2] ];
+            var limite = { 'superior': data[0][nome_limites[0]],
+                           'inferior': data[0][nome_limites[1]] };
+
+            // console.log('sup: ',y(limite.superior));
+            // console.log('inf: ',y(limite.inferior));
+
+            if($("#graphic svg rect.gray_area").length == 0){
+                svg.append("svg:rect")
+                    .attr("y", y(limite.superior))
+                    .attr("width", width)
+                    .attr("height", y(limite.inferior) - y(limite.superior))
+                    .attr("class", "gray_area")
+                    .style("fill","#ddd");
+            }
+
+            //will draw the line
+            var line = d3.svg.line()
+                .x(function(d) { return x(d.date); })
+                .y(function(d) { return y(d.value); })
+                .interpolate('linear');
+
+            // console.log(line_values);
+
+            var verticalLine = svg.append('line')
+                                .attr({
+                                    'x1': 0,
+                                    'y1': 0,
+                                    'x2': 0,
+                                    'y2': height
+                                })
+                                .attr('stroke', 'white')
+                                .attr('class', 'verticalLine');
+
+            var circle = svg.append('circle')
+                .attr('opacity', 0)
+                .attr({
+                r: 6,
+                fill: '#c0ba45'});
+
+            //define the zoom
+            // var zoom = d3.behavior.zoom()
+            //     .x(x)
+            //     .y(y)
+            //     .scaleExtent([1,8])
+            //     .on("zoom", zoomed);
+
+            //call the zoom on the SVG
+            // svg.call(zoom);
+
+            //create and draw the x axis
+            var xAxis = d3.svg.axis()
+                .scale(x)
+                .orient("bottom")
+                .ticks(d3.time.years,1)
+                .tickFormat(pt_BR.timeFormat("%y"));;
+
+            if($("#graphic svg .x.axis").length){
+                $("#graphic svg .x.axis").remove();
+            }
+
+
+            svg.append("svg:g")
+                .attr("class", "x axis")
+                .attr("transform", "translate(0," + (height)  + ")")
+                .call(xAxis);
+
+            //create and draw the y axis
+            var yAxis = d3.svg.axis()
+                .scale(y)
+                .orient("left")
+                .tickSize(-width)
+                .tickPadding(8);
+
+            svg.append("svg:g")
+                .attr("class", "y axis")
+
+            //bind the data
+            var thegraph = svg.selectAll(".thegraph")
+                .data([linedata[0]])
+
+            //append a g tag for each line and set of tooltip circles and give it a unique ID based on the column name of the data
+            var thegraphEnter=thegraph.enter().append("g")
+                .attr("clip-path", "url(#clip)")
+                .attr("class", "thegraph")
+                .attr('fill', 'transparent')
+                .attr('id',function(d){ return d.name+"-line"; })
+                .style("stroke-width",2)
+                .on("mouseover", function (d) {
+                    // d3.select(this)                          //on mouseover of each line, give it a nice thick stroke
+                    // .style("stroke-width",'6px');
+
+                    var selectthegraphs = $('.thegraph').not(this);     //select all the rest of the lines, except the one you are hovering on and drop their opacity
+                    d3.selectAll(selectthegraphs)
+                        .style("opacity",0.2);
+
+                    var getname = document.getElementById(d.name);    //use get element cause the ID names have spaces in them
+                    var selectlegend = $('.legend').not(getname);    //grab all the legend items that match the line you are on, except the one you are hovering on
+
+                    // d3.selectAll(selectlegend)    // drop opacity on other legend names
+                    //     .style("opacity",.2);
+
+                    // d3.select(getname)
+                    //     .attr("class", "legend-select");  //change the class on the legend name that corresponds to hovered line to be bolder
+                })
+                .on("mouseout", function(d) {        //undo everything on the mouseout
+                    d3.select(this)
+                        .style("stroke-width",'2px');
+
+                    var selectthegraphs = $('.thegraph').not(this);
+                    d3.selectAll(selectthegraphs)
+                        .style("opacity",1);
+
+                    var getname = document.getElementById(d.name);
+                    var getname2= $('.legend[fakeclass="fakelegend"]')
+                    var selectlegend = $('.legend').not(getname2).not(getname);
+
+                    // d3.selectAll(selectlegend)
+                    //     .style("opacity",1);
+
+                    // d3.select(getname)
+                    //     .attr("class", "legend");
+                });
+
+            var valuePos = {'x': 0, 'y': 20};
+            var datePos  = {'x': 0, 'y': 20};
+
+            first_data = thegraphEnter[0][0].__data__.values[0];
+            last_data = thegraphEnter[0][0].__data__.values[thegraphEnter[0][0].__data__.values.length-1];
+
+
+            svg.append("svg:defs")
+                .append("pattern")
+                .attr("id", "imgpattern")
+                .attr("x", 0)
+                .attr("y", 0)
+                .attr("width", 1)
+                .attr("height", 1)
+                .append("image")
+                .attr("width", "51")
+                .attr("height", "33")
+                .attr("xlink:href", "images/bg_valor-atual-grafico.png");
+
+            if($("#graphic svg rect.last_tip").length == 0){
+                svg.append("svg:rect")
+                    .attr("x", x(last_data.date) - 25)
+                    .attr("y", y(last_data.value) - 37)
+                    .attr("width", 51)
+                    .attr("height", 33)
+                    .attr("text-align", "center")
+                    .attr("class", "last_tip")
+                    .style("fill","url(#imgpattern)")
+                    .attr('opacity',1);
+            }
+
+
+            var tiptext = svg.selectAll('.tip_text')
+                    .data([{'posX': x(last_data.date) - 5,
+                    	'posY': y(last_data.value) - 18, 
+                    	'text': ''+ number_in_pt_BR(last_data.value,1) }])
+                    .enter()
+                    .append("text")
+                    .attr('class','tip_text');
+            var tipLabel = tiptext
+                   .attr("x", function(d) { return d.posX; })
+                   .attr("y", function(d) { return d.posY; })
+                   .text( function (d) { return d.text; });
+
+            svg.on('mousemove', function () {
+                var xPos = d3.mouse(this)[0];
+                var selected_value = 0.0;
+                var selected_date;
+                var selected_original_value;
+
+                if(xPos < x(first_data.date))
+                {
+                    xPos = x(first_data.date);
+                    selected_value = first_data.value.toFixed(2);
+                    selected_date = pt_BR.timeFormat("%b, '%y")(first_data.date);
+                    selected_original_value = first_data.value;
+                }
+                else if(xPos > x(last_data.date))
+                {
+                    xPos = x(last_data.date);
+                    selected_value = '';
+                    selected_date = pt_BR.timeFormat("%b, '%y")(last_data.date);
+                    selected_original_value = last_data.value;
+                }
+                else
+                {
+                    var selected_point = {};
+                    var distance = x(last_data.date);
+
+                    thegraphEnter[0][0].__data__.values.forEach(function(v){
+                        if( Math.abs(x(v.date)-xPos) < distance)
+                        {
+                            selected_point = v;
+                            selected_date = pt_BR.timeFormat("%b, '%y")(v.date);
+                            selected_value = number_in_pt_BR(v.value,1);
+                            distance = Math.abs(x(v.date)-xPos);
+                        }
+                    });
+
+                    xPos = x(selected_point.date);
+                    selected_original_value = selected_point.value;
+                }
+
+                d3.select(".verticalLine").attr("transform", function () {
+                    return "translate(" + xPos + ",0)";
+                });
+
+                // var pathLength = d3.select('path.line').node().getTotalLength();
+                var mouseX = xPos;
+                // var beginning = mouseX,
+                //     end = pathLength,
+                //     target;
+
+                // while (true) {
+                //     target = Math.floor((beginning + end) / 2);
+                //     pos = d3.select('path.line').node().getPointAtLength(target);
+                //
+                //     if ((target === end || target === beginning) && pos.x !== mouseX) {
+                //         break;
+                //     }
+                //
+                //     if (pos.x > mouseX) {
+                //         end = target;
+                //     }
+                //     else if (pos.x < mouseX) {
+                //         beginning = target;
+                //     }
+                //     else {
+                //         break; //position found
+                //     }
+                // }
+
+                circle.attr("opacity", 1)
+                    .attr("cx", mouseX)
+                    .attr("cy", y(selected_original_value));
+
+                svg.selectAll('.value_text').remove();
+                svg.selectAll('.date_text').remove();
+
+                valuePos.x = mouseX+5;
+                if(mouseX < 80)
+                {
+                    datePos.x = valuePos.x;
+
+                    valuePos.y = datePos.y+20;
+                }
+                else if(mouseX > 400)
+                {
+                    datePos.x = mouseX-80;
+
+                    valuePos.x = mouseX-80;
+                    valuePos.y = datePos.y+20;
+                }
+                else
+                {
+                    valuePos.y = datePos.y;
+                    datePos.x = mouseX-80;
+                }
+
+                var valuetext = svg.selectAll('.value_text')
+                    .data([{'posX': valuePos.x,'posY': valuePos.y, 'text': ''+selected_value}])
+                    .enter()
+                    .append("text")
+                    .attr('class','value_text');
+                var datetext = svg.selectAll('.date_text')
+                    .data( [ { 'posX': datePos.x,'posY': datePos.y, 'text': ''+ selected_date } ] )
+                    .enter()
+                    .append("text")
+                    .attr('class','date_text');
+
+                var valueLabel = valuetext
+                   .attr("x", function(d) { return d.posX; })
+                   .attr("y", function(d) { return d.posY; })
+                   .text( function (d) { return d.text; })
+                   .attr("font-family", "sans-serif")
+                   .attr("font-size", "12px")
+                   .attr("fill", "black");
+                 var dateLabel = datetext
+                    .attr("x", function(d) { return d.posX; })
+                    .attr("y", function(d) { return d.posY; })
+                    .text( function (d) { return d.text; })
+                    .attr("font-family", "sans-serif")
+                    .attr("font-size", "12px")
+                    .attr("fill", "gray");
+
+                // console.log("x and y coordinate where vertical line intersects graph: " + [pos.x, pos.y]);
+                // console.log("data where vertical line intersects graph: " + [x.invert(pos.x), y.invert(pos.y)]);
+            });
+
+            //actually append the line to the graph
+            thegraphEnter.append("path")
+                .attr("class", "line")
+                .style("stroke", function(d) { return color(d.name); })
+                .attr("d", function(d) { return line(d.values[0]); })
+                .transition()
+                .duration(2000)
+                .attrTween('d',function (d){
+                    var interpolate = d3.scale.quantile()
+                        .domain([0,1])
+                        .range(d3.range(1, d.values.length+1));
+                    return function(t){
+                        return line(d.values.slice(0, interpolate(t)));
+                    };
+                });
+
+            //then append some 'nearly' invisible circles at each data point
+            thegraph.selectAll("circle")
+                .data( function(d) {return [d.values[d.values.length-1]];} )
+                .enter()
+                .append("circle")
+                    .attr("class","tipcircle")
+                    .attr("cx", function(d,i){return x(d.date)})
+                    .attr("cy",function(d,i){return y(d.value)})
+                    .attr("r",4)
+                    .attr('fill','white')
+                    // .style('opacity', 1e-6)//1e-6
+                    .attr ("title", maketip);
+
+            //append the legend
+            var legend = svg.selectAll('.legend')
+                .data(linedata);
+
+            var legendEnter=legend
+                .enter()
+                .append('g')
+                .attr('class', 'legend')
+                .attr('id',function(d){ return d.name; })
+                .on('click', function (d) {                           //onclick function to toggle off the lines
+                    if($(this).css("opacity") == 1){                  //uses the opacity of the item clicked on to determine whether to turn the line on or off
+
+                        var elemented = document.getElementById(this.id +"-line");   //grab the line that has the same ID as this point along w/ "-line"  use get element cause ID has spaces
+                        d3.select(elemented)
+                            .transition()
+                            .duration(1000)
+                            .style("opacity",0)
+                            .style("display",'none');
+
+                        d3.select(this)
+                            .attr('fakeclass', 'fakelegend')
+                            .transition()
+                            .duration(1000)
+                            .style ("opacity", .2);
+                    } else {
+
+                        var elemented = document.getElementById(this.id +"-line");
+                        d3.select(elemented)
+                            .style("display", "block")
+                            .transition()
+                            .duration(1000)
+                            .style("opacity",1);
+
+                        d3.select(this)
+                            .attr('fakeclass','legend')
+                            .transition()
+                            .duration(1000)
+                            .style ("opacity", 1);}
+                });
+
+            //create a scale to pass the legend items through
+            var legendscale= d3.scale.ordinal()
+                        .domain(lastvalues)
+                        .range([0,30,60,90,120,150,180,210]);
+
+            //actually add the circles to the created legend container
+            legendEnter.append('circle')
+                .attr('cx', width +20)
+                .attr('cy', function(d){return legendscale(d.values[d.values.length-1].value);})
+                .attr('r', 7)
+                .style('fill', function(d) {
+                    return color(d.name);
+                });
+
+            //add the legend text
+            legendEnter.append('text')
+                .attr('x', width+35)
+                .attr('y', function(d){return legendscale(d.values[d.values.length-1].value);})
+                .text(function(d){ return d.name; });
+
+
+            // set variable for updating visualization
+            var thegraphUpdate = d3.transition(thegraph);
+
+            // change values of path and then the circles to those of the new series
+            thegraphUpdate.select("path")
+                .attr("d", function(d, i) {
+
+                    //must be a better place to put this, but this works for now
+                    lastvalues[i]=d.values[d.values.length-1].value;
+                    lastvalues.sort(function (a,b){return b-a});
+                    legendscale.domain(lastvalues);
+
+                    return line(d.values); });
+
+            thegraphUpdate.selectAll("circle")
+                .attr ("title", maketip)
+                .attr("cy",function(d,i){return y(d.value)})
+                .attr("cx", function(d,i){return x(d.date)});
+
+
+              // and now for legend items
+              var legendUpdate=d3.transition(legend);
+
+            legendUpdate.select("circle")
+                .attr('cy', function(d, i){
+                    return legendscale(d.values[d.values.length-1].value);});
+
+            legendUpdate.select("text")
+                .attr('y',  function (d) {return legendscale(d.values[d.values.length-1].value);});
+
+
+             // update the axes,
+            d3.transition(svg).select(".y.axis")
+                .call(yAxis);
+
+            d3.transition(svg).select(".x.axis")
+                .call(xAxis);
+
+            //make my tooltips work
+            // $('circle').tipsy({opacity:0.9, gravity:'n', html:true});
+
+
+            //define the zoom function
+            // function zoomed() {
+            //
+            //     svg.select(".x.axis").call(xAxis);
+            //     svg.select(".y.axis").call(yAxis);
+            //
+            //     svg.selectAll(".tipcircle")
+            //         .attr("cx", function(d,i){return x(d.date)})
+            //         .attr("cy",function(d,i){return y(d.value)});
+            //
+            //     svg.selectAll(".line")
+            //         .attr("class","line")
+            //         .attr("d", function (d) { return line(d.values)});
+            // }
+            svg.attr("width", widthTem).attr("height", heightTem);
+
+        //end of the redraw function
+        }
+
+        svg.append("svg:text")
+        .attr("text-anchor", "start")
+            .attr ("x", 0-margin.left)
+            .attr("y", height+margin.bottom-10)
+            .attr ("class","source");
+
+            //d3.select(window).on('resize', redraw);
+
+        $( window ).resize(function() {
+          redraw();
+        });
+    }
+
+
+    $(function(){
+	    grafico();
+    });
+});
+
+</script>

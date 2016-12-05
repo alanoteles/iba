@@ -1,0 +1,99 @@
+<section class="beh-projetosnumeros">
+	<h2 class="subtitle-area">Projetos em Números <a href="projetos-numeros.html" class="btn-mais pull-right"><span class="glyphicon glyphicon-plus-sign glyphicon-align-left "></span>mais</a></h2>
+	<div class="">
+		<select>
+			<option>ABRAPA</option>
+		</select>
+	</div>
+	<div class="">
+		<select>
+			<option>Todas as atividades</option>
+		</select>
+	</div>
+
+	<div class="graphics">
+		<section class="beh-graficodefault">
+  <div id="graphic"></div>
+<script>
+$( document ).ready(function() {
+    createLineChart({
+      id: 'graphic',
+      data_file: 'data.csv'
+    });
+});
+
+</script>
+
+		<div id="canvas-circle">
+            <div class="box-circle">
+            	<div class="circle" id="circles-1"></div>
+            	<div class="tooltip">Confederação Nacional da Indústria</div>
+            	<div class="circles-text"></div>
+            </div>
+            <div class="box-circle">
+            	<div class="circle" id="circles-2"></div>
+            	<div class="tooltip">Confederação Nacional da Indústria Confederação Nacional da Indústria</div>
+            	<div class="circles-text"></div>
+            </div>
+            <div class="box-circle">
+            	<div class="circle" id="circles-3"></div>
+            	<div class="tooltip">Confederação Nacional da Indústria</div>
+            	<div class="circles-text"></div>
+            </div>
+        </div>	
+	</div>
+	<script>
+        var myCircle = Circles.create({
+		  id:                  'circles-1',
+		  size:                'md-1',
+		  start_angle:         90,
+		  value:               25.7,
+		  maxValue:            100,
+		  text:                function(value){return value + '%';},
+		  backgroundColor:     '#dbe1e4',
+		  duration:            400,
+		  wrpClass:            'circles-wrp',
+		  textClass:           'circles-text',
+		  valueStrokeClass:    'circles-valueStroke',
+		  maxValueStrokeClass: 'circles-maxValueStroke',
+		  styleWrapper:        true,
+		  styleText:           true,
+		  state:               '01'
+		});
+		var myCircle = Circles.create({
+		  id:                  'circles-2',
+		  size:                'md-1',
+		  start_angle:         90,
+		  value:               42,
+		  maxValue:            100,
+		  text:                function(value){return value + '%';},
+		  backgroundColor:     '#dbe1e4',
+		  duration:            400,
+		  wrpClass:            'circles-wrp',
+		  textClass:           'circles-text',
+		  valueStrokeClass:    'circles-valueStroke',
+		  maxValueStrokeClass: 'circles-maxValueStroke',
+		  styleWrapper:        true,
+		  styleText:           true,
+		  state:               '02'
+		});
+		var myCircle = Circles.create({
+		  id:                  'circles-3',
+		  size:                'md-1',
+		  start_angle:         90,
+		  value:               92,
+		  maxValue:            100,
+		  text:                function(value){return value + '%';},
+		  backgroundColor:     '#dbe1e4',
+		  duration:            400,
+		  wrpClass:            'circles-wrp',
+		  textClass:           'circles-text',
+		  valueStrokeClass:    'circles-valueStroke',
+		  maxValueStrokeClass: 'circles-maxValueStroke',
+		  styleWrapper:        true,
+		  styleText:           true,
+		  state:               '03'
+		});
+        
+    </script>	
+</section>

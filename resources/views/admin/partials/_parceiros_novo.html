@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>IBA - Admin</title>
+
+    <meta name="description" content="overview &amp; stats" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css" />
+
+    <!--[if IE 7]>
+      <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
+    <![endif]-->
+
+    <!-- page specific plugin styles -->
+
+    <link rel="stylesheet" href="assets/css/jquery-ui-1.10.3.custom.min.css" />
+    <link rel="stylesheet" href="assets/css/chosen.css" />
+    <link rel="stylesheet" href="assets/css/datepicker.css" />
+    <link rel="stylesheet" href="assets/css/bootstrap-timepicker.css" />
+    <link rel="stylesheet" href="assets/css/daterangepicker.css" />
+    <link rel="stylesheet" href="assets/css/colorpicker.css" />
+
+    <!-- fonts -->
+
+    <link rel="stylesheet" href="assets/css/ace-fonts.css" />
+
+    <!-- ace styles -->
+
+    <link rel="stylesheet" href="assets/css/ace.min.css" />
+    <link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
+    <link rel="stylesheet" href="assets/css/ace-skins.min.css" />
+
+    <!-- Crop -->
+    <link rel="stylesheet" href="assets/css/style-crop.css" type="text/css" />
+
+  
+    <link rel="stylesheet" href="assets/css/style-admin.css" />
+
+
+    <!--[if lte IE 8]>
+      <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
+    <![endif]-->
+
+    <!-- inline styles related to this page -->
+
+    <!-- ace settings handler -->
+
+    <script src="{{asset('admin/assets/js/ace-extra.min.js')}}"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+    <!--[if lt IE 9]>
+    <script src="{{asset('admin/assets/js/html5shiv.js')}}"></script>
+    <script src="{{asset('admin/assets/js/respond.min.js')}}"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+  
+    <!-- BARRA TOPO -->
+    <div class="navbar navbar-default" id="navbar">
+
+      <div class="navbar-container" id="navbar-container">
+        <div class="navbar-header pull-left">
+          <a href="index.html" class="navbar-brand"><small>Soluções Integradas - Portal</small></a>
+        </div>
+
+        <div class="navbar-header pull-right" role="navigation">
+          <ul class="nav ace-nav">
+            <li class="grey">
+              
+              <!-- NOTIFICAÇÕES -->
+              <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                <i class="icon-bell icon-animated-bell"></i>
+                <span class="badge badge-important">8</span>
+              </a>
+
+              
+              <ul class="pull-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
+                <li class="dropdown-header"><i class="icon-warning-sign"></i>8 Notifications</li>
+
+                <li>
+                  <a href="#">
+                    <div class="clearfix">
+                      <span class="pull-left"><i class="btn btn-xs no-hover btn-pink icon-comment"></i>New Comments</span>
+                      <span class="pull-right badge badge-info">+12</span>
+                    </div>
+                  </a>
+                </li>
+
+                <li>
+                  <a href="#"><i class="btn btn-xs btn-primary icon-user"></i>Bob just signed up as an editor ...</a>
+                </li>
+
+                <li>
+                  <a href="#">
+                    <div class="clearfix">
+                      <span class="pull-left"><i class="btn btn-xs no-hover btn-success icon-shopping-cart"></i>New Orders</span>
+                      <span class="pull-right badge badge-success">+8</span>
+                    </div>
+                  </a>
+                </li>
+
+                <li>
+                  <a href="#">
+                    <div class="clearfix">
+                      <span class="pull-left"><i class="btn btn-xs no-hover btn-info icon-twitter"></i>Followers</span>
+                      <span class="pull-right badge badge-info">+11</span>
+                    </div>
+                  </a>
+                </li>
+
+                <li><a href="#">See all notifications<i class="icon-arrow-right"></i></a></li>
+              </ul>
+            </li>
+
+            <li class="light-grey">
+              <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                <i class="icon-envelope icon-animated-vertical"></i>
+                <span class="badge badge-important">5</span>
+              </a>
+
+              <ul class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
+                  <li class="dropdown-header"><i class="icon-envelope-alt"></i>5 Messages</li>
+                  <li>
+                    <a href="#">
+                      <img src="{{asset('admin/assets/avatars/avatar.png')}}" class="msg-photo" alt="Alex's Avatar" />
+                      <span class="msg-body">
+                        <span class="msg-title"><span class="blue">Alex:</span>Ciao sociis natoque penatibus et auctor ...</span>
+                        <span class="msg-time"><i class="icon-time"></i><span>a moment ago</span></span>
+                      </span>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="#">
+                      <img src="{{asset('admin/assets/avatars/avatar3.png')}}" class="msg-photo" alt="Susan's Avatar" />
+                      <span class="msg-body">
+                        <span class="msg-title"><span class="blue">Susan:</span>Vestibulum id ligula porta felis euismod ...</span>
+                        <span class="msg-time"><i class="icon-time"></i><span>20 minutes ago</span></span>
+                      </span>
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="#">
+                      <img src="{{asset('admin/assets/avatars/avatar4.png')}}" class="msg-photo" alt="Bob's Avatar" />
+                      <span class="msg-body">
+                        <span class="msg-title"><span class="blue">Bob:</span>Nullam quis risus eget urna mollis ornare ...</span>
+                        <span class="msg-time"><i class="icon-time"></i><span>3:15 pm</span></span>
+                      </span>
+                    </a>
+                  </li>
+                  <li><a href="inbox.html">See all messages<i class="icon-arrow-right"></i></a></li>
+              </ul>
+            </li>
+
+            <li class="light-blue">
+              <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+                <img class="nav-user-photo" src="{{asset('admin/assets/avatars/user.jpg" alt="Jason's Photo" />
+                <span class="user-info"><small>Bem vindo,</small>Fulano</span>
+                <i class="icon-caret-down"></i>
+              </a>
+
+              <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                <li><a href="#"><i class="icon-cog"></i>Settings</a></li>
+                <li><a href="#"><i class="icon-user"></i>Profile</a></li>
+                <li class="divider"></li>
+                <li><a href="#"><i class="icon-off"></i>Logout </a></li>
+              </ul>
+            </li>
+          </ul><!-- /.ace-nav -->
+        </div><!-- /.navbar-header -->
+      </div><!-- /.container -->
+    </div>
+    <!-- / BARRA TOPO -->
+
+
+
+
+
+
+
+
+
+    <div class="main-container" id="main-container">
+
+      <div class="main-container-inner">
+        
+        <!-- Ativa o menu mobile -->
+        <a class="menu-toggler" id="menu-toggler" href="#"><span class="menu-text"></span></a>
+
+
+        <!-- BARA DA LATERAL ESQUERDA -->
+        <div class="sidebar" id="sidebar">
+
+          <!-- Abas superiores -->
+          <div class="sidebar-shortcuts" id="sidebar-shortcuts">
+
+            <!-- Icones na aba-->
+            <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">  
+              <div class="abas abas-active"><i class="icon-globe"></i></div>
+            </div>
+
+            <!-- Icones na aba em mobile-->
+            <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+              <span class="btn btn-success"></span>
+              <span class="btn btn-info"></span>
+              <span class="btn btn-warning"></span>
+              <span class="btn btn-danger"></span>
+            </div>
+          </div>
+          <!--/ Abas -->
+
+
+
+
+          <!-- ############### Menu  ############### -->
+          <ul class="nav nav-list menu-esquerdo">
+            <li class=""><a href="_projetos.html"><i class="icon-dashboard"></i><span class="menu-text">Projetos</span></a></li>
+            <li class=""><a href="_noticias.html"><i class="icon-dashboard"></i><span class="menu-text">Notícias</span></a></li>
+            <li class=""><a href="_objetos.html"><i class="icon-dashboard"></i><span class="menu-text">Objetos</span></a></li>
+            <li class=""><a href="_secoes.html"><i class="icon-dashboard"></i><span class="menu-text">Seções</span></a></li>
+            <li class="active"><a href="_parceiros.html"><i class="icon-dashboard"></i><span class="menu-text">Parceiros</span></a></li>
+            <li class=""><a href="_banners.html"><i class="icon-dashboard"></i><span class="menu-text">Banners</span></a></li>
+            <li class=""><a href="_usuarios.html"><i class="icon-dashboard"></i><span class="menu-text">Usuários</span></a></li>
+            <li class=""><a href="_tabelas-de-apoio.html"><i class="icon-dashboard"></i><span class="menu-text">Tabelas de apoio</span></a></li>
+            <li class="inactive"><a href=""><i class="icon-dashboard"></i><span class="menu-text">Ajuda e suporte</span></a></li>
+          </ul>
+          <!-- / ############### Menu  ############### -->
+
+
+        </div>
+        <!-- / BARA DA LATERAL ESQUERDA -->
+  
+
+
+
+
+
+        <!-- LATERAL DIREITA -->
+        <div class="main-content">
+
+          <!-- breadcrumbs -->
+          <div class="breadcrumbs" id="breadcrumbs">
+            <ul class="breadcrumb">
+              <li><i class="icon-home home-icon"></i> <a href="index.html">Portal</a></li>
+              <li><a href="_parceiros.html">Parceiros</a></li>
+              <li class="active">Novo parceiro</li>
+            </ul>
+          </div>
+          <!-- / breadcrumbs -->
+
+  
+ 
+          <!-- WRAP DOS DADOS -->
+          <div class="wrap-content">     
+
+            <form name="frm" id="frm" class="form-horizontal" role="form">
+
+              <div class="col-xs-12 botoes-pj-pf">
+                <a class="btn btn-sm font-size-14 margin-right-20 margin-left-2 remover-item" style="padding: 3px 10px 4px 10px;">Excluir parceiro</a>
+                <a href="_parceiros.html"  class="btn cancelar btn-sm font-size-14 margin-right-2" style="padding: 3px 10px 4px 10px;">Cancelar</a>
+                <button type="submit" class="btn btn-success salvar no-margin">Salvar</button>                  
+              </div>
+              <br clear="all"/>
+              <div class="tabbable">
+                <ul class="nav nav-tabs" id="myTab">
+                  <li class="active"><a data-toggle="tab" href="#aba-gerais">Dados gerais</a></li>
+                  <li class=""><a data-toggle="tab" href="#aba-imagens">Imagens</a></li>
+                  <li class=""><a data-toggle="tab" href="#aba-traducoes">Traduções</a></li>
+                </ul>
+
+                <div class="tab-content">
+                 
+
+                  <!-- dados gerais -->
+                  <div id="aba-gerais" class="tab-pane margin-bottom-45 active">
+
+                    <div class="exibir-sim-nao">
+                      <span>Exibir</span>
+                      <div class="checkbox_sim_nao pull-right margin-left-30">
+                        <div class="tipo sim">
+                          <div class="icon">✓</div>
+                          <div class="texto"></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <h3 class="header smaller lighter blue font-size-18 margin-bottom-25 margin-top-20" style="font-weight: 400;">
+                      Sobre o parceiro
+                    </h3>
+
+                    <div class="form-group fotm-tab margin-top-35">
+                      <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nome * </label>
+                      <div class="col-sm-9">
+                        <input type="text" id="nome" name="nome" class="col-sm-12" required="true">
+                      </div>
+                    </div>  
+
+                    <div class="form-group fotm-tab">
+                      <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Sigla </label>
+                      <div class="col-sm-9">
+                        <input type="text" id="sigla" name="sigla" class="col-sm-12" required="true">
+                      </div>
+                    </div>  
+
+                    <div class="form-group fotm-tab">
+                      <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Grupo *</label>
+                      <div class="col-sm-3">
+                        <select class="form-control col-sm-12" id="grupo" name="grupo">
+                          <option value="">Associadas</option>
+                          <option value="1">Associadas 01</option>
+                          <option value="2">Associadas 02</option>
+                        </select>
+                      </div>
+                    </div>                                          
+
+                    <div class="form-group fotm-tab">
+                      <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> URL do site </label>
+                      <div class="col-sm-6">
+                        <input type="text" id="url" name="url" class="col-sm-12" required="true">
+                      </div>
+                    </div>  
+
+                    <div class="form-group fotm-tab">
+                      <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Resumo * </label>
+                      <div class="col-sm-9">
+                        <textarea name="resumo" id="resumo" class="form-control descricao-grupo" placeholder="" required="true"></textarea>
+                      </div>
+                    </div>                    
+
+
+                    <h3 class="header smaller lighter blue font-size-18 margin-bottom-25 margin-top-20" style="font-weight: 400;">
+                      Conteúdo
+                    </h3>
+                    <textarea name="conteudo" id="conteudo" class="ckeditor" placeholder="Lorem ipsum dolor est sit amet consectetur est ipsum dolor. Lorem ipsum dolor est sit amet consectetur est ipsum dolor ipsum dolor est sit amet consectetur est ipsum dolor."></textarea>
+                    
+
+
+
+                  </div>
+                  <!-- / dados gerais -->
+
+                  <!--  -->
+                  <div id="aba-imagens" class="tab-pane  margin-top-45  margin-bottom-45">
+                    <h3 class="header smaller lighter blue font-size-18 margin-bottom-25 margin-top-20" style="font-weight: 400;">
+                      Galeria de imagens
+                    </h3>
+                    
+
+                    <div class="form-group fotm-tab margin-top-40">
+                      <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Arquivo de imagem</label>
+                      <div class="col-sm-9">
+                        
+                        <div>
+                          <button type="button" class="btn btn-sm abrir-boxfile" style="padding-top: 2px; padding-bottom: 2px; font-size: 12px; outline: none !important;">Selecionar arquivo</button>                          
+                          <input type="file" id="file" style="width:0px;height:0;">
+                        </div>
+
+                        <p class="dados-arquivo margin-top-20">Arquivo selecionado: <span style="font-weight: 700;color: #000;">nenhum arquivo selecionado</span></p>
+                        
+                        <!-- crop -->
+                        <div class="col-sm-6 no-padding-left">
+                          <div class="container-crop-parceiros">
+                            <div class="imageBox">
+                              <div class="thumbBox"></div>
+                              <div class="spinner" style="display: none">Loading...</div>
+                            </div>
+                            <div class="action">
+                              <input type="button" id="btnZoomOut" value="-">
+                              <input type="button" id="btnZoomIn" value="+">
+                            </div>
+                            <!-- <div class="cropped"></div> -->
+                          </div>
+                        </div>
+
+                        <div class="col-sm-6 align-right">
+                          <input type="button" id="btnCrop" value="Incluir na galeria" class="btn btn-sm btn-success salvar pull-right" style="padding: 1px 10px; margin-top: -35px;">
+                          <input type="button" id="btnCropCancelar" value="Cancelar" class="btn btn-sm salvar pull-right" style="padding: 1px 10px; margin: -35px 135px 0 0px;">
+                        </div>  
+                        <!-- / crop -->
+                      </div>
+                    </div>
+
+
+                    <div class="form-group fotm-tab margin-top-40">
+                      <label class="col-sm-3 control-label no-padding-right"> Galeria</label>
+                      <div class="col-sm-9">
+                        <div class="parceiros-galeria margin-top-10"><img src="{{asset('admin/assets/images/fundo-crop-parceiros.png')}}" alt=""></div>
+                      </div>
+                    </div>                      
+
+                  </div>
+                  <!-- /  -->
+              
+                  
+                  <!--  -->
+                  <div id="aba-traducoes" class="tab-pane  margin-top-45  margin-bottom-45">
+
+                    <h3 class="header smaller lighter blue font-size-18 margin-bottom-25 margin-top-45" style="font-weight: 400;">
+                      Seleção do idioma
+                    </h3>       
+
+                    <div class="form-group fotm-tab">
+                      <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Traduções desse objeto </label>
+                      <div class="col-sm-9 font-size-16 font-weight-700" >
+                        <span id="label_en">EN</span> |
+                        <span id="label_es" class="inactive">ES</span>
+                      </div>
+                    </div>   
+
+                    <div class="form-group fotm-tab">
+                      <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Idioma </label>
+                      <div class="col-sm-3">
+                        <select class="form-control col-sm-12" id="idioma_trad" name="idioma_trad"  required="true">
+                          <option value="">Selecione</option>
+                          <option value="EN">Inlgês</option>
+                          <option value="ES">Espanhol</option>
+                        </select>
+                      </div>
+                    </div>  
+
+                    <h3 class="header smaller lighter blue font-size-18 margin-bottom-25 margin-top-45" style="font-weight: 400;">
+                      Dados gerais
+                    </h3>  
+
+
+                    <div class="form-group fotm-tab margin-top-35">
+                      <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nome *</label>
+                      <div class="col-sm-8">
+                        <input type="text" id="nome_trad" name="nome_trad" class="col-sm-12">
+                      </div>
+
+                      <div class="col-sm-1 align-right padding-top-3">
+                        <a href="javascript:void(0)" id="id-btn-dialog1" ><img src="{{asset('admin/assets/images/icon_dialog.png')}}" alt=""></a>
+                      </div>
+                    </div>  
+
+                    <div class="form-group fotm-tab">
+                      <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Sigla </label>
+                      <div class="col-sm-3">
+                        <input type="text" id="sigla_trad" name="sigla_trad" class="col-sm-12">
+                      </div>
+
+                      <div class="col-sm-1 align-right padding-top-3">
+                        <a href="javascript:void(0)" id="id-btn-dialog2" ><img src="{{asset('admin/assets/images/icon_dialog.png')}}" alt=""></a>
+                      </div>
+                    </div>  
+
+
+                    <div class="form-group fotm-tab">
+                      <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> URL do site </label>
+                      <div class="col-sm-8">
+                        <input type="text" id="url_trad" name="url_trad" class="col-sm-12">
+                      </div>
+
+                      <div class="col-sm-1 align-right padding-top-3">
+                        <a href="javascript:void(0)" id="id-btn-dialog3" ><img src="{{asset('admin/assets/images/icon_dialog.png')}}" alt=""></a>
+                      </div>
+                    </div>  
+
+                    <div class="form-group fotm-tab">
+                      <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Resumo * </label>
+                      <div class="col-sm-8">
+                        <textarea name="resumo" id="resumo" class="form-control descricao-grupo" placeholder="" required="true"></textarea>
+                      </div>
+
+                      <div class="col-sm-1 align-right padding-top-3">
+                        <a href="javascript:void(0)" id="id-btn-dialog4" ><img src="{{asset('admin/assets/images/icon_dialog.png')}}" alt=""></a>
+                      </div>
+                    </div> 
+
+
+                    <h3 class="header smaller lighter blue font-size-18 margin-bottom-25 margin-top-45" style="font-weight: 400;">
+                      Conteúdo
+                    </h3>  
+
+                    <div class="form-group fotm-tab">
+                      <div class="col-sm-11">
+                        <textarea name="conteudo_trad" id="conteudo_trad" class="ckeditor" placeholder="Lorem ipsum dolor est sit amet consectetur est ipsum dolor. Lorem ipsum dolor est sit amet consectetur est ipsum dolor ipsum dolor est sit amet consectetur est ipsum dolor."></textarea>
+                      </div>  
+                      <div class="col-sm-1 align-right padding-top-3">
+                        <a href="javascript:void(0)" id="id-btn-dialog5" ><img src="{{asset('admin/assets/images/icon_dialog.png')}}" alt=""></a>
+                      </div>
+                    </div>  
+                  </div>
+                  <!-- /  -->
+
+                </div>
+                
+                <br clear="all"><br clear="all">
+              </div>
+
+            </form>
+          </div>
+          <!-- / WRAP DOS DADOS -->
+            
+        </div>
+        <!-- / LATERAL DIREITA -->
+
+
+
+      </div><!-- /.main-container-inner -->
+    </div><!-- /.main-container -->
+
+
+
+    <!-- #dialog-message -->
+    <div id="dialog-message" class="hide"></div>
+    <!-- / #dialog-message -->
+
+
+    <!-- =============================== SCRIPTS =============================== -->
+
+
+    <!--[if !IE]> -->
+    <script type="text/javascript">
+        window.jQuery || document.write("<script src='assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+    </script>
+    <!-- <![endif]-->
+
+    <!--[if IE]>
+    <script type="text/javascript">
+     window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
+    </script>
+    <![endif]-->
+
+
+
+    <!-- basic scripts -->
+    <script type="text/javascript">
+        if("ontouchend" in document) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+    </script>
+    <script src="{{asset('admin/assets/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/typeahead-bs2.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/bootbox.min.js')}}"></script>
+
+    <!-- page specific plugin scripts -->
+
+    <!--[if lte IE 8]>
+      <script src="{{asset('admin/assets/js/excanvas.min.js')}}"></script>
+    <![endif]-->
+
+    <script src="{{asset('admin/assets/js/jquery-ui-1.10.3.custom.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/jquery.ui.touch-punch.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/jquery.slimscroll.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/jquery.easy-pie-chart.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/jquery.sparkline.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/flot/jquery.flot.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/flot/jquery.flot.pie.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/flot/jquery.flot.resize.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/jquery-ui-1.10.3.full.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/jquery.ui.touch-punch.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/chosen.jquery.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/fuelux/fuelux.spinner.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/date-time/bootstrap-datepicker.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/date-time/bootstrap-timepicker.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/date-time/moment.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/date-time/daterangepicker.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/bootstrap-colorpicker.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/jquery.knob.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/jquery.autosize.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/jquery.inputlimiter.1.3.1.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/jquery.maskedinput.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/bootstrap-tag.min.js')}}"></script>
+
+
+    <!-- ace scripts -->
+
+    <script src="{{asset('admin/assets/js/ace-elements.min.js')}}"></script>
+    <script src="{{asset('admin/assets/js/ace.min.js')}}"></script>
+
+
+    <!-- Script exclusivo desta area -->
+    <script src="{{asset('admin/js/cropbox.js')}}"></script>
+    <script src="{{asset('admin/js/_parceiros_novo.js')}}"></script>
+    <script src="{{asset('admin/js/objetos-crop.js')}}"></script>
+    <script src="{{asset('admin/js/ckeditor/ckeditor.js?v=2"></script>
+
+ 
+  </body>
+</html>
